@@ -17,7 +17,7 @@ class MissionAndGoals extends StatelessWidget {
       ),
       drawer: const CustomDrawer(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 150),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 120),
         child: Container(
           width: double.infinity,
           height: MediaQuery.sizeOf(context).height * 0.9,
