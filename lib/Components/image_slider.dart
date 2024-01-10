@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class ImageSlider extends StatefulWidget {
@@ -9,57 +10,58 @@ class ImageSlider extends StatefulWidget {
 
 class _ImageSliderState extends State<ImageSlider> {
   final List<String> imageUrls = [
-    "assets/Home.jpg",
-    "assets/home2.jpg",
-    "assets/home3.jpg",
-    "assets/home4.jpg",
+    "assets/HomePage/h-1.jpg",
+    "assets/HomePage/h-2.jpg",
+    "assets/HomePage/h-3.png",
+    "assets/HomePage/h-4.png",
+    "assets/HomePage/h-5.png",
+    "assets/HomePage/h-6.png",
+    "assets/HomePage/h-7.png",
   ];
   int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 5),
+      padding: const EdgeInsets.only(top: 10),
       child: Column(
-        //  mainAxisAlignment: MainAxisAlignment.center,
-        //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(
-            flex: 1,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              ),
-              child: SizedBox(
-                height: 700,
-                width: double.infinity,
-                child: PageView.builder(
-                  onPageChanged: (index) {
-                    setState(() {
-                      currentIndex = index % imageUrls.length;
-                    });
-                  },
-                  //itemCount: imageUrls.length,
-                  pageSnapping: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: Image.asset(
-                        imageUrls[index % imageUrls.length],
-                        height: 800,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  },
-                ),
-              ),
+          CarouselSlider(
+            items: imageUrls.map((imageUrl) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    width: 800,
+                    height: 700,
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    child: Image.asset(
+                      imageUrl,
+                      fit: BoxFit.contain,
+                    ),
+                  );
+                },
+              );
+            }).toList(),
+            options: CarouselOptions(
+              // height: 400.0,
+              enlargeCenterPage: true,
+              autoPlay: true,
+              aspectRatio: 16 / 9,
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enableInfiniteScroll: true,
+              //autoPlayAnimationDuration: Duration(milliseconds: 800),
+              viewportFraction: 0.8,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+              initialPage: currentIndex,
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -77,11 +79,12 @@ class _ImageSliderState extends State<ImageSlider> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 3),
       child: Container(
-        height: isSelected ? 12 : 8,
-        width: isSelected ? 12 : 8,
+        height: isSelected ? 7 : 8,
+        width: isSelected ? 30 : 8,
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: isSelected ? Colors.red : Colors.black,
+          borderRadius: BorderRadius.circular(5),
+          shape: BoxShape.rectangle,
+          color: isSelected ? const Color(0xff6C8FF8) : const Color(0xffCCCCCC),
         ),
       ),
     );

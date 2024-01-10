@@ -19,7 +19,7 @@ class GalleryScreen extends StatelessWidget {
       body: Column(
         children: [
           Center(
-            child: CustomContainerForFood(
+            child: CustomContainer(
               asset: 'assets/FoodIcon.png',
               title: 'Donation',
               onPressed: () {},

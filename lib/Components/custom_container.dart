@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomContainerForFood extends StatelessWidget {
+class CustomContainer extends StatelessWidget {
   final String asset;
   final String title;
   final VoidCallback onPressed;
-  const CustomContainerForFood({
+  const CustomContainer({
     super.key,
     required this.asset,
     required this.title,
@@ -13,34 +14,37 @@ class CustomContainerForFood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      width: double.infinity,
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color: Colors.grey[400],
-        child: InkWell(
+    return Column(
+      children: [
+        InkWell(
           onTap: onPressed,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                asset,
-                width: 200,
-                height: 180,
+          child: Container(
+            height: 90,
+            width: 90,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black,
               ),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 25,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(19),
+                  bottomRight: Radius.circular(19)),
+            ),
+            child: Center(child: SvgPicture.asset(asset)),
           ),
         ),
-      ),
+        const SizedBox(
+          height: 9,
+        ),
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+            //fontStyle: FontStyle.italic,
+            //fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }

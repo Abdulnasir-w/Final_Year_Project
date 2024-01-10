@@ -40,6 +40,8 @@ dependencies:
   animated_text_kit: ^4.2.2
   file_picker: ^6.1.1
   fluttertoast: ^8.2.4
+  carousel_slider: ^4.2.1
+  flutter_svg: ^2.0.9
 
 
 dev_dependencies:
@@ -67,6 +69,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/login/login.png
+    - assets/HomePage/
+    - assets/Icons/food.svg
+    - assets/Icons/about.svg
+    - assets/Icons/contact-us.svg
+    - assets/Icons/form.svg
+    - assets/Icons/mission.svg
+    - assets/Icons/gallery.svg
+    - assets/Icons/shopkeeper.svg
     - assets/volunteer.jpg
     - assets/volunteer2.jpg
     - assets/volunteer3.jpg
