@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:orphankor/Components/button.dart';
 import 'package:orphankor/Components/textform_email.dart';
+import 'package:orphankor/Models/ShopKeeper/Login/login_shopkeeper_model.dart';
 import 'package:orphankor/Screens/shop_keeper/auth/register_screen.dart';
-import 'package:orphankor/Screens/shop_keeper/shopkeeper.dart';
 
 class ShopKeeperLogin extends StatelessWidget {
   ShopKeeperLogin({super.key});
@@ -91,7 +91,16 @@ class ShopKeeperLogin extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              CustomButton(title: "Login", onPressed: () {}),
+              CustomButton(
+                title: "Login",
+                onPressed: () {
+                  ShopkeeperAuthLogin.loginUser(
+                    context: context,
+                    email: emailController.toString(),
+                    password: passwordController.toString(),
+                  );
+                },
+              ),
               const SizedBox(
                 height: 10,
               ),

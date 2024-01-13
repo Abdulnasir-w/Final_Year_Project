@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:orphankor/Utils/flutter_toast.dart';
 
 class MultipleFilePicker extends StatefulWidget {
-  const MultipleFilePicker({Key? key}) : super(key: key);
+  final Function(List<Map<String, dynamic>> files) onFilesSelected;
+  const MultipleFilePicker({
+    Key? key,
+    required this.onFilesSelected,
+  }) : super(key: key);
 
   @override
   State<MultipleFilePicker> createState() => _MultipleFilePickerState();
@@ -57,15 +61,18 @@ class _MultipleFilePickerState extends State<MultipleFilePicker> {
       allowMultiple: true,
     );
     if (result != null) {
-      setState(() {
-        fileInfos = result.files
-            .map((file) => {
-                  'name': file.name,
-                  'isUploaded':
-                      true, // Set to true for simplicity; you should use your logic
-                })
-            .toList();
-      });
+      setState(
+        () {
+          fileInfos = result.files
+              .map((file) => {
+                    'name': file.name,
+                    'isUploaded':
+                        true, // Set to true for simplicity; you should use your logic
+                  })
+              .toList();
+        },
+      );
+      widget.onFilesSelected(fileInfos);
       ToastUtils.showToast("File is Pick");
     } else {
       ToastUtils.showToast("File doesn't Pick");

@@ -2,14 +2,15 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:orphankor/Utils/flutter_toast.dart';
 
-class FormButton extends StatefulWidget {
-  const FormButton({super.key});
+class SingleFilePicker extends StatefulWidget {
+  final void Function(Map<String, dynamic>) onFileSelected;
+  const SingleFilePicker({super.key, required this.onFileSelected});
 
   @override
-  State<FormButton> createState() => _FormButtonState();
+  State<SingleFilePicker> createState() => _FormButtonState();
 }
 
-class _FormButtonState extends State<FormButton> {
+class _FormButtonState extends State<SingleFilePicker> {
   String fileName = '';
   //String extension = '';
   //List<int> bytes = [];
@@ -41,8 +42,6 @@ class _FormButtonState extends State<FormButton> {
                 color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
-        //Text(extension),
-        //Text(bytes.toString()),
       ],
     );
   }
@@ -52,20 +51,18 @@ class _FormButtonState extends State<FormButton> {
       type: FileType.custom,
       allowedExtensions: ['jpg', 'png', 'pdf', 'doc'],
       allowMultiple: false,
-      //withData: true,
     );
-    //(result != null && result.files.single.path != null)
+
     if (result != null) {
       PlatformFile file = result.files.first;
       file.name;
-      //file.extension;
-      //file.bytes;
+      widget.onFileSelected({
+        'fileName': file.name,
+        'filePath': file.path,
+      });
       ToastUtils.showToast("File is Pick");
-      //File _file = File(result.files.single.path!)
       setState(() {
         fileName = file.name;
-        //extension = file.extension!;
-        // bytes = file.bytes!;
       });
     } else {
       ToastUtils.showToast("File doesn't Pick");

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MyDropDownButton extends StatefulWidget {
-  const MyDropDownButton({super.key});
+  final Function onValueChanged;
+  const MyDropDownButton({super.key, required this.onValueChanged});
 
   @override
   State<MyDropDownButton> createState() => _MyDropDownButtonState();
@@ -23,7 +24,8 @@ class _MyDropDownButtonState extends State<MyDropDownButton> {
       }).toList(),
       onChanged: (String? newValue) {
         setState(() {
-          selectedValue = newValue ?? ''; // Handle null case
+          selectedValue = newValue ?? '';
+          widget.onValueChanged(selectedValue); // Handle null case
         });
       },
       value: selectedValue, // Set the selected value

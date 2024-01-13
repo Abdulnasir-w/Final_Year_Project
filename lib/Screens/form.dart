@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:orphankor/Components/button.dart';
 import 'package:orphankor/Components/drawer.dart';
@@ -5,13 +7,35 @@ import 'package:orphankor/Components/drop_down_button.dart';
 import 'package:orphankor/Components/file_picker.dart';
 import 'package:orphankor/Components/multiple_file_picker.dart';
 import 'package:orphankor/Components/textform_email.dart';
+import 'package:orphankor/Models/Form/adding_form_model.dart';
 
-class FormsScreen extends StatelessWidget {
+class FormsScreen extends StatefulWidget {
   const FormsScreen({super.key});
 
   @override
+  State<FormsScreen> createState() => _FormsScreenState();
+}
+
+class _FormsScreenState extends State<FormsScreen> {
+  @override
   Widget build(BuildContext context) {
     final formkey = GlobalKey<FormState>();
+    final widowNameController = TextEditingController();
+    final husbandNameController = TextEditingController();
+    final phoneNoController = TextEditingController();
+    final widowCnicController = TextEditingController();
+    final husbandCnicController = TextEditingController();
+    final orphanNameController = TextEditingController();
+    final fatherNameController = TextEditingController();
+    final phoneNumberController = TextEditingController();
+    final districtNameController = TextEditingController();
+    final tehsilNameController = TextEditingController();
+    final villageNameController = TextEditingController();
+    List<Map<String, dynamic>> deathCertificate = [];
+    List<Map<String, dynamic>> affidavte = [];
+    List<Map<String, dynamic>> multipleSelectedFiles = [];
+    String selectedDropdownValue = '1';
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -37,6 +61,7 @@ class FormsScreen extends StatelessWidget {
                 //TextFormField Widow
                 CustomTextForm(
                   label: "Widow Name",
+                  controller: widowNameController,
                   title: "Enter Widow Name",
                   keyboardType: TextInputType.name,
                   validator: (value) {
@@ -53,6 +78,7 @@ class FormsScreen extends StatelessWidget {
                 CustomTextForm(
                   label: "Husband Name",
                   title: "Enter Husband Name",
+                  controller: husbandNameController,
                   keyboardType: TextInputType.name,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -69,6 +95,7 @@ class FormsScreen extends StatelessWidget {
                 CustomTextForm(
                   label: "Phone No",
                   title: "03401234567",
+                  controller: phoneNoController,
                   keyboardType: TextInputType.phone,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -85,6 +112,7 @@ class FormsScreen extends StatelessWidget {
                 CustomTextForm(
                   label: "Widow CNIC",
                   title: "Enter Widow CNIC",
+                  controller: widowCnicController,
                   keyboardType: TextInputType.phone,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -99,6 +127,7 @@ class FormsScreen extends StatelessWidget {
                 //TextFormField Husband cnic
                 CustomTextForm(
                   label: "Husband CNIC",
+                  controller: husbandCnicController,
                   title: "Enter Husband CNIC",
                   keyboardType: TextInputType.name,
                   validator: (value) {
@@ -119,19 +148,19 @@ class FormsScreen extends StatelessWidget {
                   height: 10,
                 ),
                 // File Pickers
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Death Certificate:",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
-                    SizedBox(height: 10),
-                    Align(
+                    const SizedBox(height: 10),
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Upload Death Certificate",
@@ -141,23 +170,27 @@ class FormsScreen extends StatelessWidget {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     //Single File Picker Button
-                    FormButton(),
-                    SizedBox(
+                    SingleFilePicker(
+                      onFileSelected: (files) {
+                        deathCertificate = [files];
+                      },
+                    ),
+                    const SizedBox(
                       height: 15,
                     ),
-                    Text(
+                    const Text(
                       "Affidavit:",
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
-                    SizedBox(height: 10),
-                    Align(
+                    const SizedBox(height: 10),
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Upload Affidavit",
@@ -167,12 +200,16 @@ class FormsScreen extends StatelessWidget {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     //Single File Picker Button
-                    FormButton(),
-                    SizedBox(
+                    SingleFilePicker(
+                      onFileSelected: (files) {
+                        affidavte = [files];
+                      },
+                    ),
+                    const SizedBox(
                       height: 10,
                     ),
                   ],
@@ -195,6 +232,7 @@ class FormsScreen extends StatelessWidget {
                 CustomTextForm(
                   title: "Enter Orphan Name",
                   label: "Orphan Name",
+                  controller: orphanNameController,
                   keyboardType: TextInputType.name,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -210,6 +248,7 @@ class FormsScreen extends StatelessWidget {
                 CustomTextForm(
                   title: "Enter Father Name",
                   label: "Father Name",
+                  controller: fatherNameController,
                   keyboardType: TextInputType.name,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -225,6 +264,7 @@ class FormsScreen extends StatelessWidget {
                 CustomTextForm(
                   title: "Enter Phone Number",
                   label: "Phone Number",
+                  controller: phoneNumberController,
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -250,16 +290,24 @@ class FormsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "How Many Kids.",
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     //Drop down menu of Kids
-                    MyDropDownButton(),
+                    MyDropDownButton(
+                      onValueChanged: (value) {
+                        setState(
+                          () {
+                            selectedDropdownValue = value;
+                          },
+                        );
+                      },
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -290,9 +338,15 @@ class FormsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const Align(
+                Align(
                     alignment: Alignment.centerLeft,
-                    child: MultipleFilePicker()),
+                    child: MultipleFilePicker(
+                      onFilesSelected: (files) {
+                        setState(() {
+                          multipleSelectedFiles = files;
+                        });
+                      },
+                    )),
                 const SizedBox(
                   height: 15,
                 ),
@@ -313,6 +367,7 @@ class FormsScreen extends StatelessWidget {
                 CustomTextForm(
                   title: "Enter District Name",
                   label: "District Name",
+                  controller: districtNameController,
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -327,6 +382,7 @@ class FormsScreen extends StatelessWidget {
                 CustomTextForm(
                   title: "Enter Tehsil Name",
                   label: "Tehsil Name",
+                  controller: tehsilNameController,
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -341,6 +397,7 @@ class FormsScreen extends StatelessWidget {
                 CustomTextForm(
                   title: "Enter Village Name",
                   label: "Village Name",
+                  controller: villageNameController,
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -352,7 +409,29 @@ class FormsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 25,
                 ),
-                CustomButton(title: "Submit", onPressed: () {}),
+                CustomButton(
+                    title: "Submit",
+                    onPressed: () {
+                      FormSubmition.submitForm(
+                        context: context,
+                        widowNameController: widowNameController.toString(),
+                        husbandNameControlle: husbandNameController.toString(),
+                        phoneNoController: phoneNoController.toString(),
+                        widowCnicController: widowCnicController.toString(),
+                        husbandCnicController: husbandCnicController.toString(),
+                        orphanNameController: orphanNameController.toString(),
+                        fatherNameController: fatherNameController.toString(),
+                        phoneNumberController: phoneNumberController.toString(),
+                        districtNameController:
+                            districtNameController.toString(),
+                        tehsilNameController: tehsilNameController.toString(),
+                        villageNameController: villageNameController.toString(),
+                        deathCertificate: deathCertificate,
+                        affidavte: affidavte,
+                        multiFilePicker: multipleSelectedFiles,
+                        dropDownValue: selectedDropdownValue,
+                      );
+                    }),
                 const SizedBox(
                   height: 15,
                 ),

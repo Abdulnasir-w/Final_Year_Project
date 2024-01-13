@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:orphankor/Screens/shop_keeper/auth/login_scren.dart';
+import 'package:orphankor/Screens/shop_keeper/auth/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
