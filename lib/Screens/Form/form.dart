@@ -334,14 +334,13 @@ class _FormsScreenState extends State<FormsScreen> {
                   height: 10,
                 ),
                 Align(
-                    alignment: Alignment.centerLeft,
-                    child: MultipleFilePicker(
-                      onFilesSelected: (files) {
-                        setState(() {
-                          multipleSelectedFiles = files;
-                        });
-                      },
-                    )),
+                  alignment: Alignment.centerLeft,
+                  child: MultipleFilePicker(
+                    onFilesSelected: (files) {
+                      multipleSelectedFiles = files;
+                    },
+                  ),
+                ),
                 const SizedBox(
                   height: 15,
                 ),
