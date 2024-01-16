@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:orphankor/Components/button.dart';
 import 'package:orphankor/Components/drawer.dart';
@@ -34,7 +32,8 @@ class _FormsScreenState extends State<FormsScreen> {
     List<Map<String, dynamic>> deathCertificate = [];
     List<Map<String, dynamic>> affidavte = [];
     List<Map<String, dynamic>> multipleSelectedFiles = [];
-    String selectedDropdownValue = '1';
+    String selectedDropdownValue = '';
+    //print("updated $selectedDropdownValue");
 
     return Scaffold(
       appBar: AppBar(
@@ -301,11 +300,7 @@ class _FormsScreenState extends State<FormsScreen> {
                     //Drop down menu of Kids
                     MyDropDownButton(
                       onValueChanged: (value) {
-                        setState(
-                          () {
-                            selectedDropdownValue = value;
-                          },
-                        );
+                        selectedDropdownValue = value;
                       },
                     ),
                   ],

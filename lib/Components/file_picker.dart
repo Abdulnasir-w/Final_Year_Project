@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:orphankor/Screens/Form/file_list.dart';
 import 'package:orphankor/Utils/flutter_toast.dart';
 
 class SingleFilePicker extends StatefulWidget {
@@ -12,35 +13,50 @@ class SingleFilePicker extends StatefulWidget {
 
 class _FormButtonState extends State<SingleFilePicker> {
   String fileName = '';
-  //String extension = '';
-  //List<int> bytes = [];
+  List<Map<String, dynamic>> fileInfos = [];
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        Container(
-          width: 140,
-          height: 50,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: Colors.black),
-          child: TextButton(
-            onPressed: () {
-              _picker();
-            },
-            child: const Text(
-              "Choose File",
-              style: TextStyle(color: Colors.white),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 140,
+              height: 50,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Colors.black),
+              child: TextButton(
+                onPressed: () {
+                  _picker();
+                },
+                child: const Text(
+                  "Choose File",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Text(
-            fileName,
-            style: const TextStyle(
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
-          ),
+        Row(
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FileListScreen(fileInfos)));
+              },
+              child: Text(
+                fileName,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -49,7 +65,7 @@ class _FormButtonState extends State<SingleFilePicker> {
   void _picker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'png', 'pdf', 'doc'],
+      allowedExtensions: ['jpg', 'png', 'pdf'],
       allowMultiple: false,
     );
 
@@ -60,9 +76,16 @@ class _FormButtonState extends State<SingleFilePicker> {
         'fileName': file.name,
         'filePath': file.path,
       });
+
       ToastUtils.showToast("File is Pick");
       setState(() {
         fileName = file.name;
+        fileInfos = [
+          {
+            "fileName": file.name,
+            "filePath": file.path,
+          }
+        ];
       });
     } else {
       ToastUtils.showToast("File doesn't Pick");

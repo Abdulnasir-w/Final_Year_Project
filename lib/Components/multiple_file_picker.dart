@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:orphankor/Screens/Form/file_list.dart';
 import 'package:orphankor/Utils/flutter_toast.dart';
 
 class MultipleFilePicker extends StatefulWidget {
@@ -43,8 +44,7 @@ class _MultipleFilePickerState extends State<MultipleFilePicker> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => FileListScreen(fileInfos),
-                ),
+                    builder: (context) => FileListScreen(fileInfos)),
               );
             },
             child: const Icon(Icons.arrow_circle_right_outlined,
@@ -57,7 +57,7 @@ class _MultipleFilePickerState extends State<MultipleFilePicker> {
   void _picker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'png', 'pdf', 'doc'],
+      allowedExtensions: ['jpg', 'png', 'pdf'],
       allowMultiple: true,
     );
     if (result != null) {
@@ -66,48 +66,18 @@ class _MultipleFilePickerState extends State<MultipleFilePicker> {
           fileInfos = result.files
               .map((file) => {
                     'name': file.name,
+                    'path': file.path,
                     'isUploaded':
                         true, // Set to true for simplicity; you should use your logic
                   })
               .toList();
         },
       );
+
       widget.onFilesSelected(fileInfos);
       ToastUtils.showToast("File is Pick");
     } else {
       ToastUtils.showToast("File doesn't Pick");
     }
-  }
-}
-
-// Show Files Name  Screen
-class FileListScreen extends StatelessWidget {
-  final List<Map<String, dynamic>> fileInfos;
-
-  const FileListScreen(this.fileInfos, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('File List'),
-      ),
-      body: ListView.builder(
-        itemCount: fileInfos.length,
-        itemBuilder: (context, index) {
-          final fileInfo = fileInfos[index];
-
-          return ListTile(
-            title: Row(
-              children: [
-                Text(fileInfo['name']),
-                // if (fileInfo['isUploaded'] ?? false) Icon(Icons.arrow_forward),
-              ],
-            ),
-          );
-        },
-      ),
-    );
   }
 }
