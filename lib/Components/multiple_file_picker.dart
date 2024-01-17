@@ -56,8 +56,8 @@ class _MultipleFilePickerState extends State<MultipleFilePicker> {
     if (result != null) {
       List<Map<String, dynamic>> newFiles = result.files.map((file) {
         return {
-          'name': file.name,
-          'path': file.path,
+          'fileName': file.name,
+          'filePath': file.path,
           'isUploaded':
               true, // Set to true for simplicity; you should use your logic
         };

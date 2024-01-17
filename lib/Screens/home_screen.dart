@@ -4,6 +4,7 @@ import 'package:orphankor/Screens/aboutscreen.dart';
 import 'package:orphankor/Screens/contact.dart';
 import 'package:orphankor/Screens/gallery.dart';
 import 'package:orphankor/Screens/mission_goals.dart';
+import 'package:orphankor/Screens/shop_keeper/shopkeeper.dart';
 import '../Components/custom_container.dart';
 import 'Form/form.dart';
 
@@ -115,7 +116,8 @@ class HomeScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const GalleryScreen()));
+                                builder: (context) =>
+                                    const ShopKeeperScreen()));
                       },
                     ),
                   ],

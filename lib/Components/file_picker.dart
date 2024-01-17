@@ -4,16 +4,17 @@ import 'package:orphankor/Screens/Form/file_list.dart';
 import 'package:orphankor/Utils/flutter_toast.dart';
 
 class SingleFilePicker extends StatefulWidget {
-  final void Function(Map<String, dynamic>) onFileSelected;
-  const SingleFilePicker({super.key, required this.onFileSelected});
+  final void Function(List<Map<String, dynamic>>)
+      onFilesSelected; // Changed the callback type
+  const SingleFilePicker({super.key, required this.onFilesSelected});
 
   @override
   State<SingleFilePicker> createState() => _FormButtonState();
 }
 
 class _FormButtonState extends State<SingleFilePicker> {
-  String fileName = '';
-  List<Map<String, dynamic>> fileInfos = [];
+  List<Map<String, dynamic>> fileInfos =
+      []; // Changed to a list to handle multiple files
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _FormButtonState extends State<SingleFilePicker> {
                         builder: (context) => FileListScreen(fileInfos)));
               },
               child: Text(
-                fileName,
+                _getDisplayNames(),
                 style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
@@ -62,33 +63,35 @@ class _FormButtonState extends State<SingleFilePicker> {
     );
   }
 
+  String _getDisplayNames() {
+    // Combine the names of selected files for display
+    return fileInfos.map((file) => file['fileName']).join(', ');
+  }
+
   void _picker() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['jpg', 'png', 'pdf'],
-      allowMultiple: false,
+      allowMultiple: true, // Allow selecting multiple files
     );
 
-    if (result != null) {
-      PlatformFile file = result.files.first;
-      file.name;
-      widget.onFileSelected({
-        'fileName': file.name,
-        'filePath': file.path,
-      });
+    if (result != null && result.files.isNotEmpty) {
+      List<Map<String, dynamic>> selectedFiles = result.files.map((file) {
+        return {
+          'fileName': file.name,
+          'filePath': file.path,
+        };
+      }).toList();
 
-      ToastUtils.showToast("File is Pick");
+      widget.onFilesSelected(
+          selectedFiles); // Pass the list of selected files to the callback
+
+      ToastUtils.showToast("Files are picked");
       setState(() {
-        fileName = file.name;
-        fileInfos = [
-          {
-            "fileName": file.name,
-            "filePath": file.path,
-          }
-        ];
+        fileInfos = selectedFiles;
       });
     } else {
-      ToastUtils.showToast("File doesn't Pick");
+      ToastUtils.showToast("Files are not picked");
     }
   }
 }

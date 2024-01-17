@@ -25,7 +25,7 @@ class ShopkeeperAuthLogin {
         ToastUtils.showToast("Login Successful");
         // ignore: use_build_context_synchronously
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ShooKeeper()));
+            MaterialPageRoute(builder: (context) => const ShopKeeperScreen()));
       } else {
         ToastUtils.showToast("Try Again");
         // ignore: use_build_context_synchronously

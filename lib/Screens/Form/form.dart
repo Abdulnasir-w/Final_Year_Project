@@ -6,6 +6,7 @@ import 'package:orphankor/Components/file_picker.dart';
 import 'package:orphankor/Components/multiple_file_picker.dart';
 import 'package:orphankor/Components/textform_email.dart';
 import 'package:orphankor/Models/Form/adding_form_model.dart';
+import 'package:orphankor/Screens/Form/completion_page.dart';
 
 class FormsScreen extends StatefulWidget {
   const FormsScreen({super.key});
@@ -174,8 +175,8 @@ class _FormsScreenState extends State<FormsScreen> {
                     ),
                     //Single File Picker Button
                     SingleFilePicker(
-                      onFileSelected: (files) {
-                        deathCertificate = [files];
+                      onFilesSelected: (files) {
+                        deathCertificate = files;
                       },
                     ),
                     const SizedBox(
@@ -204,8 +205,8 @@ class _FormsScreenState extends State<FormsScreen> {
                     ),
                     //Single File Picker Button
                     SingleFilePicker(
-                      onFileSelected: (files) {
-                        affidavte = [files];
+                      onFilesSelected: (files) {
+                        affidavte = files;
                       },
                     ),
                     const SizedBox(
@@ -406,25 +407,37 @@ class _FormsScreenState extends State<FormsScreen> {
                 CustomButton(
                     title: "Submit",
                     onPressed: () {
-                      FormSubmition.submitForm(
-                        context: context,
-                        widowNameController: widowNameController.toString(),
-                        husbandNameControlle: husbandNameController.toString(),
-                        phoneNoController: phoneNoController.toString(),
-                        widowCnicController: widowCnicController.toString(),
-                        husbandCnicController: husbandCnicController.toString(),
-                        orphanNameController: orphanNameController.toString(),
-                        fatherNameController: fatherNameController.toString(),
-                        phoneNumberController: phoneNumberController.toString(),
-                        districtNameController:
-                            districtNameController.toString(),
-                        tehsilNameController: tehsilNameController.toString(),
-                        villageNameController: villageNameController.toString(),
-                        deathCertificate: deathCertificate,
-                        affidavte: affidavte,
-                        multiFilePicker: multipleSelectedFiles,
-                        dropDownValue: selectedDropdownValue,
-                      );
+                      if (formkey.currentState!.validate()) {
+                        FormSubmition.submitForm(
+                          context: context,
+                          widowNameController: widowNameController.toString(),
+                          husbandNameControlle:
+                              husbandNameController.toString(),
+                          phoneNoController: phoneNoController.toString(),
+                          widowCnicController: widowCnicController.toString(),
+                          husbandCnicController:
+                              husbandCnicController.toString(),
+                          orphanNameController: orphanNameController.toString(),
+                          fatherNameController: fatherNameController.toString(),
+                          phoneNumberController:
+                              phoneNumberController.toString(),
+                          districtNameController:
+                              districtNameController.toString(),
+                          tehsilNameController: tehsilNameController.toString(),
+                          villageNameController:
+                              villageNameController.toString(),
+                          deathCertificate: deathCertificate,
+                          affidavte: affidavte,
+                          multiFilePicker: multipleSelectedFiles,
+                          dropDownValue: selectedDropdownValue,
+                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const CompletionPage(),
+                          ),
+                        );
+                      }
                     }),
                 const SizedBox(
                   height: 15,

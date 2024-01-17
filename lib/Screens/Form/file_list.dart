@@ -28,7 +28,7 @@ class FileListScreen extends StatelessWidget {
   }
 
   Widget _buildFileItem(Map<String, dynamic> fileInfo, BuildContext context) {
-    String fileName = fileInfo['name'];
+    String fileName = fileInfo['fileName'];
     bool isImage = fileName.endsWith('.jpg') || fileName.endsWith('.png');
     bool isPdf = fileName.endsWith('.pdf');
 
@@ -37,7 +37,7 @@ class FileListScreen extends StatelessWidget {
       subtitle: Text(isImage ? 'Image' : (isPdf ? 'PDF' : 'Unknown')),
       leading: isImage
           ? Image.file(
-              File(fileInfo['path'])) // Assuming you have the file path
+              File(fileInfo['filePath'])) // Assuming you have the file path
           : Icon(isPdf ? Icons.picture_as_pdf : Icons.insert_drive_file),
       onTap: () {
         if (isImage) {
@@ -45,7 +45,7 @@ class FileListScreen extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) =>
-                  PhotoViewScreen(imagePath: fileInfo['path']),
+                  PhotoViewScreen(imagePath: fileInfo['filePath']),
             ),
           );
           // Implement logic to open image viewer
@@ -54,7 +54,8 @@ class FileListScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PdfViewerScreen(pdfPath: fileInfo['path']),
+              builder: (context) =>
+                  PdfViewerScreen(pdfPath: fileInfo['filePath']),
             ),
           );
         }
