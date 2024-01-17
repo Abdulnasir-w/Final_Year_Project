@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:orphankor/Components/drawer.dart';
+import 'package:orphankor/Components/shopkeeper_drawer.dart';
 import 'package:orphankor/Models/ShopKeeper/get_widow_data_model.dart';
 
 class ShopKeeperScreen extends StatefulWidget {
@@ -15,32 +15,32 @@ class _ShopKeeperScreenState extends State<ShopKeeperScreen> {
   bool isLoading = true;
   String errorMessage = '';
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fetchData();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
 
-  // void fetchData() async {
-  //   try {
-  //     setState(() {
-  //       isLoading = true;
-  //     });
+  void fetchData() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
 
-  //     List<Map<String, String>> newDataList = await dataFetcher.fetchData();
+      List<Map<String, String>> newDataList = await dataFetcher.fetchData();
 
-  //     setState(() {
-  //       dataList = newDataList;
-  //       isLoading = false;
-  //     });
-  //   } catch (e) {
-  //     print('Error fetching data: $e');
-  //     setState(() {
-  //       errorMessage = 'Error fetching data. Please try again later.';
-  //       isLoading = false;
-  //     });
-  //   }
-  // }
+      setState(() {
+        dataList = newDataList;
+        isLoading = false;
+      });
+    } catch (e) {
+      print('Error fetching data: $e');
+      setState(() {
+        errorMessage = 'Error fetching data. Please try again later.';
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +51,12 @@ class _ShopKeeperScreenState extends State<ShopKeeperScreen> {
           child: Text("Widows List"),
         ),
       ),
-      drawer: const CustomDrawer(),
-      body: buildDataTable(),
-      // isLoading
-      //     ? const Center(child: CircularProgressIndicator())
-      //     : errorMessage.isNotEmpty
-      //         ? Center(child: Text(errorMessage))
-      //         : buildDataTable(),
+      drawer: const ShopKeeperDrawer(),
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : errorMessage.isNotEmpty
+              ? Center(child: Text(errorMessage))
+              : buildDataTable(),
     );
   }
 

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:orphankor/Components/image_slider.dart';
+import 'package:orphankor/Screens/Form/Screens/form.dart';
 import 'package:orphankor/Screens/aboutscreen.dart';
 import 'package:orphankor/Screens/contact.dart';
 import 'package:orphankor/Screens/gallery.dart';
 import 'package:orphankor/Screens/mission_goals.dart';
-import 'package:orphankor/Screens/shop_keeper/shopkeeper.dart';
+import 'package:orphankor/Screens/shop_keeper/Screen/shopkeeper.dart';
 import '../Components/custom_container.dart';
-import 'Form/form.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

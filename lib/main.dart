@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:orphankor/Screens/shop_keeper/shopkeeper.dart';
+import 'package:orphankor/Screens/shop_keeper/Screen/shopkeeper.dart';
 
 void main() {
   runApp(const MyApp());

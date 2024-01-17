@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:orphankor/Screens/shop_keeper/shopkeeper.dart';
+import 'package:orphankor/Screens/shop_keeper/Screen/shopkeeper.dart';
 import 'package:orphankor/Utils/flutter_toast.dart';
 
 class ShopkeeperAuthLogin {

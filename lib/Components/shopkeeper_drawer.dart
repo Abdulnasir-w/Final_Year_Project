@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:orphankor/Screens/Form/Screens/form.dart';
-import 'package:orphankor/Screens/mission_goals.dart';
+import 'package:orphankor/Screens/home_screen.dart';
+import 'package:orphankor/Screens/shop_keeper/Screen/report.dart';
 import 'package:orphankor/Screens/shop_keeper/Screen/shopkeeper.dart';
-import '../Screens/aboutscreen.dart';
-import '../Screens/contact.dart';
-import '../Screens/gallery.dart';
-import '../Screens/home_screen.dart';
+import 'package:orphankor/Screens/shop_keeper/auth/login_screen.dart';
 
-class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+class ShopKeeperDrawer extends StatelessWidget {
+  const ShopKeeperDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,9 +16,6 @@ class CustomDrawer extends StatelessWidget {
       ),
       child: ListView(
         children: [
-          const SizedBox(
-            height: 10,
-          ),
           const DrawerHeader(
             child: CircleAvatar(
               backgroundImage: AssetImage("assets/logo.png"),
@@ -31,7 +26,7 @@ class CustomDrawer extends StatelessWidget {
           const SizedBox(height: 10),
           const Center(
             child: Text(
-              "Khair Khegara",
+              "Shop Keeper",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -70,29 +65,12 @@ class CustomDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: const Icon(
-                    Icons.abc_outlined,
+                    Icons.list_alt_outlined,
                     color: Colors.white,
                   ),
                   horizontalTitleGap: 80.0,
                   title: const Text(
-                    "About us",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AboutUsScreen()));
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.abc_outlined,
-                    color: Colors.white,
-                  ),
-                  horizontalTitleGap: 80.0,
-                  title: const Text(
-                    "ShopKeeper",
+                    "List",
                     style: TextStyle(color: Colors.white),
                   ),
                   onTap: () {
@@ -104,70 +82,37 @@ class CustomDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   leading: const Icon(
-                    Icons.list_alt,
+                    Icons.report,
                     color: Colors.white,
                   ),
                   horizontalTitleGap: 80.0,
                   title: const Text(
-                    "Forms",
+                    "Report",
                     style: TextStyle(color: Colors.white),
                   ),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const FormsScreen()));
+                            builder: (context) =>
+                                const ShopKeeperReportScreen()));
                   },
                 ),
                 ListTile(
                   leading: const Icon(
-                    Icons.picture_in_picture_alt,
+                    Icons.logout_outlined,
                     color: Colors.white,
                   ),
                   horizontalTitleGap: 80.0,
                   title: const Text(
-                    "Gallery",
+                    "Logout",
                     style: TextStyle(color: Colors.white),
                   ),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const GalleryScreen()));
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.medical_services_outlined,
-                    color: Colors.white,
-                  ),
-                  horizontalTitleGap: 80.0,
-                  title: const Text(
-                    "Mission and Goals",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MissionAndGoals()));
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.contact_page_outlined,
-                    color: Colors.white,
-                  ),
-                  horizontalTitleGap: 80.0,
-                  title: const Text(
-                    "Contacts",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ContactsScreen()));
+                            builder: (context) => ShopKeeperLogin()));
                   },
                 ),
               ],
