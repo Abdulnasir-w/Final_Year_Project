@@ -94,11 +94,13 @@ class ShopKeeperLogin extends StatelessWidget {
               CustomButton(
                 title: "Login",
                 onPressed: () {
-                  ShopkeeperAuthLogin.loginUser(
-                    context: context,
-                    email: emailController.toString(),
-                    password: passwordController.toString(),
-                  );
+                  if (formkey.currentState!.validate()) {
+                    ShopkeeperAuthLogin.loginUser(
+                      context: context,
+                      email: emailController.toString(),
+                      password: passwordController.toString(),
+                    );
+                  }
                 },
               ),
               const SizedBox(

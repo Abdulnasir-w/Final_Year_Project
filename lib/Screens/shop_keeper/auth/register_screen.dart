@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:orphankor/Components/button.dart';
 import 'package:orphankor/Components/textform_email.dart';
 import 'package:orphankor/Models/ShopKeeper/register/register_to_shopkeeper.dart';
@@ -127,19 +128,30 @@ class ShopKeeperRegister extends StatelessWidget {
                 height: 30,
               ),
               CustomButton(
-                  title: "Register",
-                  onPressed: () {
+                title: "Register",
+                onPressed: () {
+                  if (formkey.currentState!.validate()) {
                     if (passwordController.toString() ==
                         passwordConfirmController.toString()) {
                       RegisterShopkeeper.registerUser(
-                          context: context,
-                          name: nameController.toString(),
-                          email: emailController.toString(),
-                          password: passwordController.toString());
+                        context: context,
+                        name: nameController.toString(),
+                        email: emailController.toString(),
+                        password: passwordController.toString(),
+                      );
+                      ToastUtils.showToast("Register Successfully");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ShopKeeperLogin(),
+                        ),
+                      );
                     } else {
                       ToastUtils.showToast("Password is not Matching");
                     }
-                  }),
+                  }
+                },
+              ),
               const SizedBox(
                 height: 10,
               ),

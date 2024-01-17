@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orphankor/Screens/mission_goals.dart';
+import 'package:orphankor/Screens/shop_keeper/shopkeeper.dart';
 import '../Screens/aboutscreen.dart';
 import '../Screens/contact.dart';
 import '../Screens/Form/form.dart';
@@ -82,6 +83,23 @@ class CustomDrawer extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const AboutUsScreen()));
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(
+                    Icons.abc_outlined,
+                    color: Colors.white,
+                  ),
+                  horizontalTitleGap: 80.0,
+                  title: const Text(
+                    "ShopKeeper",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ShopKeeperScreen()));
                   },
                 ),
                 ListTile(
