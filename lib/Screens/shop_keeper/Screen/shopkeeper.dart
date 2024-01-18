@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:orphankor/Components/shopkeeper_drawer.dart';
+import 'package:orphankor/Models/ShopKeeper/Row%20Data/holdin_row_data_modle.dart';
 import 'package:orphankor/Models/ShopKeeper/get_widow_data_model.dart';
+import 'package:orphankor/Screens/shop_keeper/Screen/Price_enter_scree.dart';
 
 class ShopKeeperScreen extends StatefulWidget {
   const ShopKeeperScreen({Key? key}) : super(key: key);
@@ -10,37 +12,37 @@ class ShopKeeperScreen extends StatefulWidget {
 }
 
 class _ShopKeeperScreenState extends State<ShopKeeperScreen> {
-  List<Map<String, String>> dataList = [];
+  List<WidowData> dataList = [];
   final WidowsDataFetcher dataFetcher = WidowsDataFetcher();
   bool isLoading = true;
   String errorMessage = '';
 
-  @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   fetchData();
+  // }
 
-  void fetchData() async {
-    try {
-      setState(() {
-        isLoading = true;
-      });
+  // void fetchData() async {
+  //   try {
+  //     setState(() {
+  //       isLoading = true;
+  //     });
 
-      List<Map<String, String>> newDataList = await dataFetcher.fetchData();
+  //     List<WidowData> newDataList = await dataFetcher.fetchData();
 
-      setState(() {
-        dataList = newDataList;
-        isLoading = false;
-      });
-    } catch (e) {
-      print('Error fetching data: $e');
-      setState(() {
-        errorMessage = 'Error fetching data. Please try again later.';
-        isLoading = false;
-      });
-    }
-  }
+  //     setState(() {
+  //       dataList = newDataList;
+  //       isLoading = false;
+  //     });
+  //   } catch (e) {
+  //     print('Error fetching data: $e');
+  //     setState(() {
+  //       errorMessage = 'Error fetching data. Please try again later.';
+  //       isLoading = false;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +54,25 @@ class _ShopKeeperScreenState extends State<ShopKeeperScreen> {
         ),
       ),
       drawer: const ShopKeeperDrawer(),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : errorMessage.isNotEmpty
-              ? Center(child: Text(errorMessage))
-              : buildDataTable(),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => PriceEntryScreen())));
+            },
+            child: Text("he"),
+          ),
+          buildDataTable(),
+        ],
+      ),
+      // isLoading
+      //     ? const Center(child: CircularProgressIndicator())
+      //     : errorMessage.isNotEmpty
+      //         ? Center(child: Text(errorMessage))
+      //         : buildDataTable(),
     );
   }
 
@@ -93,19 +109,29 @@ class _ShopKeeperScreenState extends State<ShopKeeperScreen> {
               DataColumn(label: Text('Shopkeeper CNIC')),
               DataColumn(label: Text('Rashan Item')),
               DataColumn(label: Text('Quantity')),
+              DataColumn(label: Text('Action')),
               DataColumn(label: Text('Status')),
             ],
             rows: dataList.map((data) {
               return DataRow(
                 cells: [
-                  DataCell(Text(data['id'].toString())),
-                  DataCell(Text(data['windowsName'].toString())),
-                  DataCell(Text(data['windowsContact'].toString())),
-                  DataCell(Text(data['windowsCnic'].toString())),
-                  DataCell(Text(data['shopkeeperCnic'].toString())),
-                  DataCell(Text(data['rashanItem'].toString())),
-                  DataCell(Text(data['quantity'].toString())),
-                  DataCell(Text(data['status'].toString())),
+                  DataCell(Text(data.id)),
+                  DataCell(Text(data.widowsName)),
+                  DataCell(Text(data.widowsContact)),
+                  DataCell(Text(data.widowsCnic)),
+                  DataCell(Text(data.shopkeeperCnic)),
+                  DataCell(Text(data.rashanItem)),
+                  DataCell(Text(data.quantity)),
+                  DataCell(Text(data.status)),
+                  DataCell(
+                    // Action button for each row
+                    ElevatedButton(
+                      onPressed: () {
+                        _navigateToPriceEntryScreen(context);
+                      },
+                      child: Text('Action'),
+                    ),
+                  ),
                 ],
               );
             }).toList(),
@@ -114,4 +140,20 @@ class _ShopKeeperScreenState extends State<ShopKeeperScreen> {
       ),
     );
   }
+
+  // Navigate to another screen for price entry
+  void _navigateToPriceEntryScreen(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => PriceEntryScreen(),
+      ),
+    );
+  }
 }
+// void _navigateToPriceEntryScreen(BuildContext context, WidowData data) {
+//     Navigator.of(context).push(
+//       MaterialPageRoute(
+//         builder: (context) => PriceEntryScreen(data: data),
+//       ),
+//     );
+//   }

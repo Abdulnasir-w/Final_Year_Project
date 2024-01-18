@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orphankor/Screens/shop_keeper/Screen/Price_enter_scree.dart';
 import 'package:orphankor/Screens/shop_keeper/Screen/shopkeeper.dart';
 
 void main() {
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ShopKeeperScreen(),
+      // theme: ThemeData(useMaterial3: true),
+      home: const ShopKeeperScreen(),
     );
   }
 }
