@@ -129,7 +129,7 @@ class _ShopKeeperScreenState extends State<ShopKeeperScreen> {
                       onPressed: () {
                         _navigateToPriceEntryScreen(context);
                       },
-                      child: Text('Action'),
+                      child: const Text('Action'),
                     ),
                   ),
                 ],
