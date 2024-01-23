@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:orphankor/Screens/shop_keeper/Screen/shopkeeper.dart';
 import 'package:orphankor/Utils/flutter_toast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ShopkeeperAuthLogin {
   static Future<void> loginUser({
@@ -22,6 +22,9 @@ class ShopkeeperAuthLogin {
         }),
       );
       if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        final String authToken = data['token'];
+        await _saveToken(authToken);
         ToastUtils.showToast("Login Successful");
         // ignore: use_build_context_synchronously
         Navigator.push(context,
@@ -46,5 +49,11 @@ class ShopkeeperAuthLogin {
         ),
       );
     }
+  }
+
+  static Future<void> _saveToken(String token) async {
+    //Using SharedPreference to save the authentication token
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("authToken", token);
   }
 }
