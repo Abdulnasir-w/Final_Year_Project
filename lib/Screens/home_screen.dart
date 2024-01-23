@@ -3,11 +3,10 @@ import 'package:orphankor/Components/image_slider.dart';
 import 'package:orphankor/Screens/Form/Screens/form.dart';
 import 'package:orphankor/Screens/aboutscreen.dart';
 import 'package:orphankor/Screens/contact.dart';
-import 'package:orphankor/Screens/gallery.dart';
 import 'package:orphankor/Screens/mission_goals.dart';
-import 'package:orphankor/Screens/shop_keeper/Screen/shopkeeper.dart';
+import 'package:orphankor/Screens/shop_keeper/auth/login_screen.dart';
 import '../Components/custom_container.dart';
-
+import '../Components/drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           child: Text("OrphanKor"),
         ),
       ),
-      //drawer: const CustomDrawer(),
+      drawer: const CustomDrawer(),
       body: Column(
         children: [
           const Padding(
@@ -117,8 +116,7 @@ class HomeScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    const ShopKeeperScreen()));
+                                builder: (context) => ShopKeeperLogin()));
                       },
                     ),
                   ],

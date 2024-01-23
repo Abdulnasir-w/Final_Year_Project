@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orphankor/Components/button.dart';
 import 'package:orphankor/Components/textform_email.dart';
-import 'package:orphankor/Models/ShopKeeper/Login/login_shopkeeper_model.dart';
+import 'package:orphankor/Screens/shop_keeper/Screen/shopkeeper.dart';
 import 'package:orphankor/Screens/shop_keeper/auth/register_screen.dart';
 
 class ShopKeeperLogin extends StatelessWidget {
@@ -95,11 +95,15 @@ class ShopKeeperLogin extends StatelessWidget {
                 title: "Login",
                 onPressed: () {
                   if (formkey.currentState!.validate()) {
-                    ShopkeeperAuthLogin.loginUser(
-                      context: context,
-                      email: emailController.toString(),
-                      password: passwordController.toString(),
-                    );
+                    // ShopkeeperAuthLogin.loginUser(
+                    //   context: context,
+                    //   email: emailController.toString(),
+                    //   password: passwordController.toString(),
+                    // );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ShopKeeperScreen()));
                   }
                 },
               ),

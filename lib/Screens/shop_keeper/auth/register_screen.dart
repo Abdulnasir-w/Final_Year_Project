@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:orphankor/Components/button.dart';
+import 'package:orphankor/Components/drawer.dart';
 import 'package:orphankor/Components/textform_email.dart';
 import 'package:orphankor/Models/ShopKeeper/register/register_to_shopkeeper.dart';
 import 'package:orphankor/Screens/shop_keeper/auth/login_screen.dart';
@@ -26,6 +26,7 @@ class ShopKeeperRegister extends StatelessWidget {
           ),
         ),
       ),
+      drawer: const CustomDrawer(),
       body: Container(
         width: double.infinity,
         height: double.infinity,

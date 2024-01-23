@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:orphankor/Components/textform_email.dart';
 import 'package:orphankor/Models/Food/food_api.dart';
 import 'package:orphankor/Models/Food/food_data_handling.dart';
-import 'package:orphankor/Models/ShopKeeper/Row%20Data/holdin_row_data_modle.dart';
 
 class PriceEntryScreen extends StatefulWidget {
   //final WidowData data;
