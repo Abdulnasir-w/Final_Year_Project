@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       // theme: ThemeData(useMaterial3: true),
-      home: const ShopKeeperScreen(),
+      home: ShopKeeperScreen(),
     );
   }
 }

@@ -24,8 +24,9 @@ class _FormsScreenState extends State<FormsScreen> {
     final phoneNoController = TextEditingController();
     final widowCnicController = TextEditingController();
     final husbandCnicController = TextEditingController();
-    final orphanNameController = TextEditingController();
-    final fatherNameController = TextEditingController();
+    final emailController = TextEditingController();
+    final relationController = TextEditingController();
+    final gaurdianNameController = TextEditingController();
     final phoneNumberController = TextEditingController();
     final districtNameController = TextEditingController();
     final tehsilNameController = TextEditingController();
@@ -138,7 +139,22 @@ class _FormsScreenState extends State<FormsScreen> {
                   },
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
+                ),
+                CustomTextForm(
+                  label: "Email",
+                  title: "Enter Email ",
+                  controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Enter Email";
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 15,
                 ),
                 const Divider(
                   thickness: 1,
@@ -229,14 +245,16 @@ class _FormsScreenState extends State<FormsScreen> {
                   height: 15,
                 ),
                 //TextFormField Orphan name
+
+                //TextFormField Father Name
                 CustomTextForm(
-                  title: "Enter Orphan Name",
-                  label: "Orphan Name",
-                  controller: orphanNameController,
+                  title: "Guardian Full Name",
+                  label: "Widow Name",
+                  controller: gaurdianNameController,
                   keyboardType: TextInputType.name,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Enter Orphan Name";
+                      return "Enter Widow Name";
                     }
                     return null;
                   },
@@ -244,15 +262,14 @@ class _FormsScreenState extends State<FormsScreen> {
                 const SizedBox(
                   height: 15,
                 ),
-                //TextFormField Father Name
                 CustomTextForm(
-                  title: "Enter Father Name",
-                  label: "Father Name",
-                  controller: fatherNameController,
+                  title: "Enter Husband Name",
+                  label: "Husband Name",
+                  controller: relationController,
                   keyboardType: TextInputType.name,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Enter Father Name";
+                      return "Enter Husband Name";
                     }
                     return null;
                   },
@@ -413,12 +430,14 @@ class _FormsScreenState extends State<FormsScreen> {
                           widowNameController: widowNameController.toString(),
                           husbandNameControlle:
                               husbandNameController.toString(),
+                          emailController: emailController.toString(),
                           phoneNoController: phoneNoController.toString(),
                           widowCnicController: widowCnicController.toString(),
                           husbandCnicController:
                               husbandCnicController.toString(),
-                          orphanNameController: orphanNameController.toString(),
-                          fatherNameController: fatherNameController.toString(),
+                          relationController: relationController.toString(),
+                          gaurdianNameController:
+                              gaurdianNameController.toString(),
                           phoneNumberController:
                               phoneNumberController.toString(),
                           districtNameController:

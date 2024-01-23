@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
+import 'package:orphankor/Screens/contact.dart';
 import 'package:orphankor/Screens/home_screen.dart';
 import 'package:orphankor/Utils/flutter_toast.dart';
 
@@ -10,9 +11,10 @@ class FormSubmition {
     required String husbandNameControlle,
     required String phoneNoController,
     required String widowCnicController,
+    required String emailController,
     required String husbandCnicController,
-    required String orphanNameController,
-    required String fatherNameController,
+    required String relationController,
+    required String gaurdianNameController,
     required String phoneNumberController,
     required String districtNameController,
     required String tehsilNameController,
@@ -27,10 +29,11 @@ class FormSubmition {
         'widowname': widowNameController,
         'husbandname': husbandNameControlle,
         'phoneno': phoneNoController,
+        'email': emailController,
         'widowcnic': widowCnicController,
         'husbandcnic': husbandCnicController,
-        'orphanname': orphanNameController,
-        'fathername': fatherNameController,
+        'Relation': relationController,
+        'Gaurdianname': gaurdianNameController,
         'phonenumnber': phoneNumberController,
         'district': districtNameController,
         'tehsil': tehsilNameController,
