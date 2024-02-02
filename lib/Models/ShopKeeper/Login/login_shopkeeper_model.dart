@@ -16,10 +16,12 @@ class ShopkeeperAuthLogin {
       final response = await http.post(
         Uri.parse(apiUrl),
         headers: {"Content-Type": "application/json"},
-        body: jsonEncode({
-          "email": email,
-          "password": password,
-        }),
+        body: jsonEncode(
+          {
+            "email": email,
+            "password": password,
+          },
+        ),
       );
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
