@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:orphankor/Utils/bottom_card.dart';
-import 'package:orphankor/Utils/image_stack.dart';
-
-import '../Components/drawer.dart';
+import '../Components/homeDrawer.dart';
+import '../Utils/bottomCard.dart';
+import '../Utils/imageStack.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
@@ -11,7 +10,7 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         title: const Text("About Us"),
         centerTitle: true,
       ),
@@ -91,8 +90,7 @@ class AboutUsScreen extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              "Lorem ipsum dolor sit amet, consecrate disciplining elite, sed do usermod temper incident ut labor et do lore magna aliquot. "
-                              "Ut enum ad minim venial, quits nostrum excitation McCull-och labors nisei ut aliquot ex ea commode consequent.",
+                              "We're a nonprofit charity organization founded with a simple goal: to help those in need. Focused on children's health, poverty, education, protection, and gender equality, we provide funding to other nonprofits nationwide. Our vision is clear: every child deserves equal opportunities",
                               textAlign: TextAlign.justify,
                               style: TextStyle(fontSize: 16),
                             ),
@@ -114,8 +112,7 @@ class AboutUsScreen extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              "Lorem ipsum dolor sit amet, consecrate disciplining elite, sed do usermod temper incident ut labor et do lore magna aliquot. "
-                              "Ut enum ad minim venial, quits nostrum excitation McCull-och labors nisei ut aliquot ex ea commode consequent.",
+                              "Your helping hand can make a difference! Join us in our goal to provide sustenance and hope to those facing hunger, contributing to the mission of saving lives through the power of nutritious food.",
                               textAlign: TextAlign.justify,
                               style: TextStyle(fontSize: 16),
                             ),
@@ -128,7 +125,7 @@ class AboutUsScreen extends StatelessWidget {
                     height: 20,
                   ),
                   Container(
-                    height: 250,
+                    height: 270,
                     width: 500,
                     decoration: BoxDecoration(
                         color: Colors.grey,

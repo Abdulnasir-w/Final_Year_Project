@@ -56,7 +56,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -84,7 +84,33 @@ flutter:
     - assets/volunteer.jpg
     - assets/volunteer2.jpg
     - assets/volunteer3.jpg
-    - assets/volunteer4.jpg
+    - assets/volunteer4.jpeg
+    - assets/logo.png
+    - assets/ShopApp.png
+    - assets/shopKeeperLogo.svg
+    - assets/Gallery/Gallery - 1.png
+    - assets/Gallery/Gallery - 2.png
+    - assets/Gallery/Gallery - 3.png
+    - assets/Gallery/Gallery - 4.png
+    - assets/Gallery/Gallery - 5.png
+    - assets/Gallery/Gallery - 6.png
+    - assets/Gallery/Gallery - 7.png
+    - assets/Gallery/Gallery - 8.png
+    - assets/Gallery/Gallery - 9.jpg
+    - assets/Gallery/Gallery - 10.jpg
+    - assets/Gallery/Gallery - 11.jpg
+    - assets/Gallery/Gallery - 12.jpg
+    - assets/Gallery/Gallery - 13.jpg
+    - assets/Gallery/Gallery - 14.jpg
+    - assets/Gallery/Gallery - 15.jpg
+    - assets/Gallery/Gallery - 16.jpg
+    - assets/Gallery/Gallery - 17.jpg
+    - assets/Gallery/Gallery - 18.jpg
+    - assets/Gallery/Gallery - 19.jpg
+    - assets/Gallery/Gallery - 20.jpg
+    - assets/Gallery/Gallery - 21.jpg
+
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
